@@ -2,36 +2,28 @@ import React , {useState,useEffect,useRef}from "react";
 import ReactDOM from "react-dom";
 
 import data from "./data.json";
-
+import { useDebounce } from 'use-debounce';
 import Board from "react-trello";
+
 
 export default function App() {
    const latestData = JSON.parse( localStorage.getItem('latest-data')) ||data
    const visibleData = JSON.parse( localStorage.getItem('visible-data')) || data
+   const searchValue = localStorage.getItem('search') || ""
   const [boarddata, setData] = useState(visibleData);
   const [orgData, setOrgData] = useState(latestData);
-  const [filter, setFilter] = useState(localStorage.getItem('search'));
+  const [filter, setFilter] = useState(searchValue);
   const [cardChanged, setCardChanged] = useState(true);
   const [cardDrag, setCardDrag] = useState(true);
   const [hideDel, setHideDel] =useState(false);
-  const filterRef = useRef();
-
+  const debouncedSearchTerm = useDebounce(filter, 350);
+  
   useEffect(() => {
-    let delayTimeOutFunction;
-
-    if (!filterRef.current) {
-      filterRef.current = true;
-    } else {
-     
-      delayTimeOutFunction = setTimeout(() => {
-      //  console.log("call api: ");
-      
         setCardChanged(false)
-        filterFunction(filter.trim());
-      }, 350); 
-    }
-    return () => clearTimeout(delayTimeOutFunction);
-  }, [filter]);
+        filterFunction(debouncedSearchTerm[0].trim());
+  
+  }, [debouncedSearchTerm[0]]);
+
 
   React.useEffect(() => {
    localStorage.setItem('latest-data', JSON.stringify(orgData));
@@ -59,9 +51,10 @@ export default function App() {
       setCardDrag(true)
       setHideDel(false)
       setData(orgData);
+      setCardChanged(true)
     }
   };
- // console.log(boarddata, orgData , cardChanged);
+  
   return (
     <div className="App">
       <h1>KANBAN BOARD</h1>
@@ -86,7 +79,7 @@ export default function App() {
         handleDragStart ={()=>{
           if(filter)return
         }}
-        handleDragEnd = {(cardId, sourceLaneId, targetLaneId, position, cardDetails)=> {
+        handleDragEnd = {()=> {
            setCardChanged(true)
         }}
         data={boarddata}

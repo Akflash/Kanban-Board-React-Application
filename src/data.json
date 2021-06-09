@@ -5,26 +5,26 @@
         "title": "Todo",
        
         "style": {
-          "width": 280
+          "width": 300
         },
         "cards": [
           {
-            "id": "Milk",
-            "title": "Buy milk",
+            "id": "Plan1",
+            "title": "INTERVIEW",
            
-            "description": "2 Gallons of milk at the Deli store"
+            "description": "Study Reactjs"
           },
           {
             "id": "Plan2",
-            "title": "Dispose Garbage",
+            "title": "Cook",
            
-            "description": "Sort out recyclable and waste as needed"
+            "description": "Cook Dinner"
           },
           {
             "id": "Plan3",
-            "title": "Write Blog",
+            "title": "UCL Final",
           
-            "description": "Can AI make memes?"
+            "description": "Watch Chelsea vs Man City"
           },
           {
             "id": "Plan4",
@@ -39,14 +39,14 @@
         "title": "In Progress",
        
         "style": {
-          "width": 280
+          "width": 300
         },
         "cards": [
           {
-            "id": "Wip1",
-            "title": "Clean House",
+            "id": "IP1",
+            "title": "Attend Class",
            
-            "description": "Soap wash and polish floor. Polish windows and doors. Scrap all broken glasses"
+            "description": "Listen to class lectures on Data Structures"
           }
         ]
       },
@@ -55,21 +55,21 @@
         "id": "DONE",
         "title": "Done",
         "style": {
-          "width": 280
+          "width": 300
         },
-        "label": "2/5",
+       
         "cards": [
           {
             "id": "Completed1",
-            "title": "Practice Meditation",
+            "title": "Game Time",
            
-            "description": "Use Headspace app"
+            "description": "Play Valorant"
           },
           {
             "id": "Completed2",
             "title": "Maintain Daily Journal",
             
-            "description": "Use Spreadsheet for now"
+            "description": "Write in diary"
           }
         ]
       }
